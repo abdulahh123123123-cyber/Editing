@@ -114,3 +114,33 @@ Unos **16 minutos** de trabajo, desde la primera línea de la música hasta este
 - Previsualizaciones, revisión y correcciones: unos 2 min.
 - Render final a resolución completa: 2 min 53 s.
 - Documentación: unos 2 min.
+
+---
+
+## Anexo — Versión portfolio de Abdullah (`entrega/abdullah-portfolio.mp4`)
+
+La misma técnica, pero con todo el contenido sacado del sitio de Abdullah (`index.html`):
+- **Contenido:**
+  - Nombre y rol.
+  - Titular "Edits that make people *stop scrolling*".
+  - Los 4 servicios.
+  - Los proyectos reales: GOAT, MMA, Adrenaline, Podcast, Cinematic Speech, Confidence y The Start.
+  - Las cifras: 5+ años y 100K+ vistas.
+  - Sus herramientas.
+  - Su llamada a la acción "Let's cut something worth watching" e Instagram/email.
+- **Identidad:** su paleta violeta → rosa, los degradados de los pósters del sitio y Playfair Display en cursiva, extraída de las fuentes incrustadas en su propio `index.html`.
+- **Escenas pensadas para un editor de vídeo, no para un motion designer:**
+  - Una línea de tiempo de NLE que se monta y un corte de cuchilla.
+  - Un feed de móvil que frena en seco en "stop".
+  - Un 16:9 → 9:16.
+  - Ondas de audio que reaccionan al golpe.
+  - Ruedas de color.
+  - Cortes alineados con los transitorios del audio y una rampa de velocidad.
+- **Música** (`scripts/compose-music-abdullah.mjs`): Re menor, más oscura y pesada para encajar con su trabajo de deportes y peleas. Incluye:
+  - Bombo más saturado.
+  - *Braams* graves en cada cambio de sección.
+  - Golpes de puño en la escena de "Sports & Fight".
+  - Un *power-down* antes del silencio.
+  - Medición: −10,8 LUFS, pico −0,9 dBFS.
+- **Iteración:** en el carrusel de trabajos, la tarjeta destacada quedaba en el borde de la pantalla y, al pasar al frente, tapaba el título. Ajusté el paneo de cámara para centrarla, puse el título por encima y reduje el tamaño de los títulos largos (ADRENALINE se cortaba).
+- **Tiempo:** unos 25 minutos adicionales, incluidos dos renders completos de unos 5 minutos cada uno.
