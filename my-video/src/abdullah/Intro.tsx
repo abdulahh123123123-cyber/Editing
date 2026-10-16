@@ -79,9 +79,10 @@ const Content: React.FC<{ f: number }> = ({ f }) => (
   </AbsoluteFill>
 );
 
-// 00:00 – 00:02 · La línea de tiempo se monta, el nombre aparece, y un corte de cuchilla parte la imagen en dos.
+// 00:00 – 00:03 · La línea de tiempo se monta, el nombre aparece, y un corte de cuchilla parte la imagen en dos.
 export const Intro: React.FC = () => {
-  const f = useCurrentFrame();
+  // La intro de la canción dura 3 s (180 frames): la animación, diseñada para 120, se estira 1,5×
+  const f = (useCurrentFrame() * 2) / 3;
   const cut = ip(f, [100, 118], [0, 1], inExpo);
   return (
     <AbsoluteFill style={{ backgroundColor: A.night, overflow: "hidden" }}>

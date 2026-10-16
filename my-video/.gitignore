@@ -5,3 +5,8 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Canción con derechos de autor: no se sube al repositorio público
+public/song/
+public/abdullah-mix.wav
+entrega/abdullah-portfolio-timeless.mp4

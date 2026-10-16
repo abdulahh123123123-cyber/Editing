@@ -2,8 +2,8 @@ import { Audio } from "@remotion/media";
 import { CameraMotionBlur } from "@remotion/motion-blur";
 import { useEffect, useState } from "react";
 import { AbsoluteFill, Sequence, continueRender, delayRender, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { BEAT, MONO, hash, inOut, ip, kickPulse } from "../reel/lib";
-import { A, loadBrandFonts } from "./brand";
+import { BEAT, MONO, hash, inOut, ip } from "../reel/lib";
+import { A, loadBrandFonts, kickPulse } from "./brand";
 import { CutOnTheHit } from "./CutOnTheHit";
 import { Impact, Outro } from "./Finale";
 import { Intro } from "./Intro";
@@ -14,13 +14,13 @@ import { StopScrolling } from "./StopScrolling";
 
 const SCENES = [
   { from: 0, name: "TIMELINE" },
-  { from: 120, name: "STOP SCROLLING" },
-  { from: 240, name: "SERVICES" },
-  { from: 360, name: "CUT ON THE HIT" },
-  { from: 480, name: "SELECTED WORK" },
-  { from: 600, name: "NUMBERS" },
-  { from: 720, name: "ABDULLAH" },
-  { from: 840, name: "CONTACT" },
+  { from: 180, name: "STOP SCROLLING" },
+  { from: 300, name: "SERVICES" },
+  { from: 420, name: "CUT ON THE HIT" },
+  { from: 540, name: "SELECTED WORK" },
+  { from: 660, name: "NUMBERS" },
+  { from: 780, name: "ABDULLAH" },
+  { from: 900, name: "CONTACT" },
 ];
 
 const Wipe: React.FC<{ at: number; color: string; stripe: string }> = ({ at, color, stripe }) => {
@@ -49,7 +49,7 @@ const Hud: React.FC = () => {
   const beatInBar = Math.floor(f / BEAT) % 4;
   const text: React.CSSProperties = { fontFamily: MONO, fontSize: 18, letterSpacing: "0.22em", color: "#fff", position: "absolute" };
   return (
-    <AbsoluteFill style={{ mixBlendMode: "difference", opacity: ip(f, [6, 24, 836, 844], [0, 1, 1, 0]) }}>
+    <AbsoluteFill style={{ mixBlendMode: "difference", opacity: ip(f, [6, 24, 896, 904], [0, 1, 1, 0]) }}>
       <div style={{ ...text, left: 56, top: 44, display: "flex", gap: 12, alignItems: "center" }}>
         <div style={{ width: 12, height: 12, borderRadius: 6, backgroundColor: "#fff", opacity: Math.floor(f / 30) % 2 ? 0.25 : 1 }} />
         REC · ABDULLAH ◦ PORTFOLIO ’26
@@ -111,42 +111,43 @@ export const Portfolio: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: A.night }}>
       <AbsoluteFill style={{ translate: `${Math.cos(a) * shake}px ${Math.sin(a) * shake}px`, scale: String(1 + 0.018 * kick) }}>
         <CameraMotionBlur shutterAngle={180} samples={6}>
-          <Sequence name="01 Timeline" durationInFrames={2 * fps} premountFor={fps}>
+          <Sequence name="01 Timeline" durationInFrames={3 * fps} premountFor={fps}>
             <Intro />
           </Sequence>
-          <Sequence name="02 Stop scrolling" from={2 * fps} durationInFrames={2 * fps} premountFor={fps}>
-            <StopScrolling from={2 * fps} />
+          <Sequence name="02 Stop scrolling" from={3 * fps} durationInFrames={2 * fps} premountFor={fps}>
+            <StopScrolling from={3 * fps} />
           </Sequence>
-          <Sequence name="03 Services" from={4 * fps} durationInFrames={2 * fps} premountFor={fps}>
-            <Services from={4 * fps} />
+          <Sequence name="03 Services" from={5 * fps} durationInFrames={2 * fps} premountFor={fps}>
+            <Services from={5 * fps} />
           </Sequence>
-          <Sequence name="04 Cut on the hit" from={6 * fps} durationInFrames={2 * fps} premountFor={fps}>
+          <Sequence name="04 Cut on the hit" from={7 * fps} durationInFrames={2 * fps} premountFor={fps}>
             <CutOnTheHit />
           </Sequence>
-          <Sequence name="05 Selected work" from={8 * fps} durationInFrames={2 * fps} premountFor={fps}>
-            <SelectedWork from={8 * fps} />
+          <Sequence name="05 Selected work" from={9 * fps} durationInFrames={2 * fps} premountFor={fps}>
+            <SelectedWork from={9 * fps} />
           </Sequence>
-          <Sequence name="06 Numbers" from={10 * fps} durationInFrames={2 * fps} premountFor={fps}>
-            <Stats />
+          <Sequence name="06 Numbers" from={11 * fps} durationInFrames={2 * fps} premountFor={fps}>
+            <Stats from={11 * fps} />
           </Sequence>
-          <Sequence name="07 Impact" from={12 * fps} durationInFrames={2 * fps} premountFor={fps}>
-            <Impact from={12 * fps} />
+          <Sequence name="07 Impact" from={13 * fps} durationInFrames={2 * fps} premountFor={fps}>
+            <Impact from={13 * fps} />
           </Sequence>
-          <Sequence name="08 Contact" from={14 * fps} durationInFrames={1 * fps} premountFor={fps}>
+          <Sequence name="08 Contact" from={15 * fps} durationInFrames={2 * fps} premountFor={fps}>
             <Outro />
           </Sequence>
         </CameraMotionBlur>
       </AbsoluteFill>
 
-      <Wipe at={4 * fps} color={A.night} stripe={A.pink} />
-      <Wipe at={6 * fps} color={A.violet} stripe={A.paper} />
-      <Wipe at={8 * fps} color={A.pink} stripe={A.sky} />
-      <Wipe at={10 * fps} color={A.paper} stripe={A.violet} />
+      <Wipe at={5 * fps} color={A.night} stripe={A.violet} />
+      <Wipe at={7 * fps} color={A.violet} stripe={A.paper} />
+      <Wipe at={9 * fps} color={A.ink} stripe={A.pink} />
+      <Wipe at={11 * fps} color={A.violet} stripe={A.night} />
 
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.42) 100%)", pointerEvents: "none" }} />
       <Grain />
       <Hud />
-      <Audio src={staticFile("music-abdullah.wav")} />
+      {/* "Timeless" (instrumental) desde 0:21 + efectos de UI sintetizados (scripts/compose-ui-sfx.mjs) */}
+      <Audio src={staticFile("abdullah-mix.wav")} />
     </AbsoluteFill>
   );
 };

@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, ip, kickPulse, outExpo } from "../reel/lib";
-import { A, POSTERS, SERIF, WORK, gradText } from "./brand";
+import { BEAT, FONT, MONO, backOut, ip, outExpo } from "../reel/lib";
+import { A, POSTERS, SERIF, WORK, gradText, kickPulse } from "./brand";
 
 const CW = 380;
 const CH = 520;

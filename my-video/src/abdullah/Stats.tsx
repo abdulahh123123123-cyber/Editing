@@ -1,35 +1,26 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { FONT, MONO, SNARES, inExpo, ip, outExpo } from "../reel/lib";
-import { A, STACK } from "./brand";
+import { FONT, MONO, inExpo, ip, outExpo } from "../reel/lib";
+import { A, STACK, kickPulse } from "./brand";
 
-const GAP = 105;
+const END = 101; // el contador llega a 100K justo antes del cambio de escena
 const SWITCH = 50;
 
-// 00:10 – 00:12 · Tensión con datos reales del sitio: 5+ años y 100K+ vistas, sobre un túnel que acelera.
-export const Stats: React.FC = () => {
+// 00:11 – 00:13 · Tensión con datos reales del sitio: 5+ años y 100K+ vistas, sobre un túnel que acelera.
+export const Stats: React.FC<{ from: number }> = ({ from }) => {
   const f = useCurrentFrame();
-  const x = Math.min(1, f / GAP);
+  const x = Math.min(1, f / END);
   const travel = 0.012 * f + (0.00011 * f * f * f) / 30;
-  let hitp = 0;
-  for (const s of SNARES) if (f >= s) hitp = Math.max(hitp, Math.exp(-(f - s) / 2.5));
+  const hitp = kickPulse(f + from, 4);
   const shake = 16 * x * x;
   const sx = Math.sin(f * 2.3) * shake + Math.sin(f * 5.1) * shake * 0.5;
   const sy = Math.cos(f * 1.7) * shake;
   const ab = 3 + 24 * x * x;
 
   const first = f < SWITCH;
-  const value = first ? Math.round(ip(f, [0, 36], [0, 5], outExpo)) : Math.round(ip(f, [SWITCH, GAP - 4], [0, 100], inExpo));
+  const value = first ? Math.round(ip(f, [0, 36], [0, 5], outExpo)) : Math.round(ip(f, [SWITCH, END], [0, 100], inExpo));
   const label = first ? "YEARS EDITING" : "VIEWS GENERATED";
   const suffix = first ? "+" : "K+";
   const local = first ? f : f - SWITCH;
-
-  if (f >= GAP) {
-    return (
-      <AbsoluteFill style={{ backgroundColor: "#000", justifyContent: "center", alignItems: "center" }}>
-        <div style={{ width: ip(f, [GAP, 119], [520, 0], inExpo), height: 3, backgroundColor: A.paper }} />
-      </AbsoluteFill>
-    );
-  }
 
   return (
     <AbsoluteFill style={{ backgroundColor: A.night, overflow: "hidden" }}>

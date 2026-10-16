@@ -1,11 +1,11 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, hash, ip, kickPulse, outExpo } from "../reel/lib";
-import { A, SERIF, gradText } from "./brand";
+import { BEAT, FONT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
+import { A, SERIF, gradText, kickPulse } from "./brand";
 
 const SERVICES = [
   { a: "SPORTS & FIGHT", b: "edits", tags: "MMA · BOXING · FOOTBALL", bg: A.night, fg: A.paper },
   { a: "SHORT-FORM", b: "social", tags: "REELS · TIKTOK · SHORTS", bg: A.violet, fg: A.paper },
-  { a: "SOUND DESIGN", b: "& mix", tags: "SFX · IMPACTS · RISERS", bg: A.paper, fg: A.ink },
+  { a: "SOUND DESIGN", b: "& mix", tags: "SFX · IMPACTS · RISERS", bg: A.night, fg: A.paper },
   { a: "COLOR &", b: "motion", tags: "GRADING · TITLES · VFX", bg: A.ink, fg: A.paper },
 ];
 

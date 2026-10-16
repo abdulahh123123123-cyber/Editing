@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, hash, ip, kickPulse, outExpo } from "../reel/lib";
-import { A, GRAD, SERIF, gradText } from "./brand";
+import { BEAT, FONT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
+import { A, GRAD, SERIF, gradText, kickPulse } from "./brand";
 
 const NAME = "ABDULLAH";
 const TAGS = ["MMA", "FOOTBALL", "REELS", "SOUND", "COLOR", "MOTION"];
@@ -60,25 +60,25 @@ export const Impact: React.FC<{ from: number }> = ({ from }) => {
   );
 };
 
-// 00:14 – 00:15 · Llamada a la acción del sitio + contacto.
+// 00:15 – 00:17 · Llamada a la acción del sitio + contacto.
 export const Outro: React.FC = () => {
   const f = useCurrentFrame();
   return (
-    <AbsoluteFill style={{ backgroundColor: A.paper, justifyContent: "center", alignItems: "center" }}>
-      <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 45%, ${A.violet}22, transparent 60%)` }} />
-      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 140, lineHeight: 1, letterSpacing: "-0.045em", color: A.ink, scale: String(ip(f, [0, 30], [1.15, 1], outExpo)), marginTop: -70 }}>
+    <AbsoluteFill style={{ backgroundColor: A.night, justifyContent: "center", alignItems: "center" }}>
+      <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 45%, ${A.violet}33, transparent 60%)` }} />
+      <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 140, lineHeight: 1, letterSpacing: "-0.045em", color: A.paper, scale: String(ip(f, [0, 30], [1.15, 1], outExpo)), marginTop: -70 }}>
         Let’s cut something
       </div>
       <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 600, fontSize: 150, lineHeight: 1.15, paddingRight: 30, ...gradText, clipPath: `inset(0 ${ip(f, [2, 20], [100, 0], outExpo)}% 0 0)` }}>worth watching.</div>
-      <div style={{ marginTop: 34, display: "flex", gap: 34, fontFamily: MONO, fontSize: 26, letterSpacing: "0.12em", color: A.ink, opacity: ip(f, [8, 20], [0, 1]) }}>
+      <div style={{ marginTop: 34, display: "flex", gap: 34, fontFamily: MONO, fontSize: 26, letterSpacing: "0.12em", color: A.paper, opacity: ip(f, [8, 20], [0, 1]) }}>
         <span>@abdullah_h000</span>
         <span style={{ color: A.violet }}>●</span>
         <span>abdulahh123123123@gmail.com</span>
       </div>
-      <div style={{ marginTop: 18, fontFamily: MONO, fontSize: 20, letterSpacing: "0.3em", color: A.ink, opacity: ip(f, [14, 26], [0, 0.65]) }}>
+      <div style={{ marginTop: 18, fontFamily: MONO, fontSize: 20, letterSpacing: "0.3em", color: A.paper, opacity: ip(f, [14, 26], [0, 0.65]) }}>
         AVAILABLE FOR NEW PROJECTS · EGYPT → WORLDWIDE
       </div>
-      <AbsoluteFill style={{ backgroundColor: "#000", opacity: ip(f, [42, 60], [0, 1]) }} />
+      <AbsoluteFill style={{ backgroundColor: "#000", opacity: ip(f, [90, 120], [0, 1]) }} />
     </AbsoluteFill>
   );
 };

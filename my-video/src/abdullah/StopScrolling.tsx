@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, hash, ip, kickPulse, outExpo } from "../reel/lib";
-import { A, POSTERS, SERIF, WORK, gradText } from "./brand";
+import { BEAT, FONT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
+import { A, POSTERS, SERIF, WORK, kickPulse } from "./brand";
 
 const CARD_H = 600;
 const STOP_AT = 2 * BEAT; // la palabra "stop" cae en el tercer beat
@@ -22,10 +22,10 @@ export const StopScrolling: React.FC<{ from: number }> = ({ from }) => {
   ];
 
   return (
-    <AbsoluteFill style={{ backgroundColor: A.paper, overflow: "hidden" }}>
-      <AbsoluteFill style={{ background: `radial-gradient(circle at 75% 50%, ${A.violet}22, transparent 50%)` }} />
+    <AbsoluteFill style={{ backgroundColor: A.violet, overflow: "hidden" }}>
+      <AbsoluteFill style={{ background: `radial-gradient(circle at 75% 50%, ${A.pink}66, transparent 50%)` }} />
       <div style={{ position: "absolute", left: 140, top: 200 }}>
-        <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.3em", color: A.violet, marginBottom: 26, opacity: ip(f, [0, 10], [0, 1]) }}>
+        <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.3em", color: A.ink, marginBottom: 26, opacity: ip(f, [0, 10], [0, 1]) }}>
           ● AVAILABLE FOR NEW PROJECTS
         </div>
         {lines.map((l) => (
@@ -71,7 +71,7 @@ export const StopScrolling: React.FC<{ from: number }> = ({ from }) => {
             lineHeight: 1.15,
             letterSpacing: "-0.02em",
             paddingRight: 30,
-            ...gradText,
+            color: A.paper,
             clipPath: `inset(0 ${ip(f, [3 * BEAT, 3 * BEAT + 18], [100, 0], outExpo)}% 0 0)`,
           }}
         >
@@ -90,7 +90,7 @@ export const StopScrolling: React.FC<{ from: number }> = ({ from }) => {
           borderRadius: 60,
           backgroundColor: A.ink,
           padding: 14,
-          boxShadow: `0 40px 120px ${A.violet}55`,
+          boxShadow: "0 40px 120px rgba(0,0,0,0.45)",
           translate: `0px ${ip(f, [0, 20], [900, 0], outExpo)}px`,
           rotate: `${ip(f, [0, 20], [12, 4], outExpo) - (f >= STOP_AT ? 4 * Math.exp(-(f - STOP_AT) / 8) * Math.cos((f - STOP_AT) * 0.6) : 0)}deg`,
           scale: String(1 + 0.02 * kick),
