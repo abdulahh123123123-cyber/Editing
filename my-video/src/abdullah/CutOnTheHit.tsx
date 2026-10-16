@@ -1,5 +1,5 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
+import { BEAT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
 import { A, POSTERS, SERIF, gradText } from "./brand";
 
 const X0 = 200;
@@ -39,7 +39,7 @@ export const CutOnTheHit: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: A.night, overflow: "hidden" }}>
       <div style={{ position: "absolute", left: X0, top: 96, display: "flex", alignItems: "baseline", gap: 26 }}>
-        <span style={{ fontFamily: FONT, fontWeight: 900, fontSize: 120, letterSpacing: "-0.045em", color: A.paper }}>Cut on the</span>
+        <span style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 120, letterSpacing: "-0.025em", color: A.paper }}>Cut on the</span>
         <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 600, fontSize: 130, paddingRight: 24, ...gradText, scale: String(f >= BEAT ? ip(f, [BEAT, BEAT + 10], [1.3, 1], outExpo) : 1) }}>hit.</span>
       </div>
       <div style={{ position: "absolute", left: X0, top: 270, fontFamily: MONO, fontSize: 22, color: A.lilac, letterSpacing: "0.08em", opacity: ip(f, [10, 24], [0, 1]) }}>

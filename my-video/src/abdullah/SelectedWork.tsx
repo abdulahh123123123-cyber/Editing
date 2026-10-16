@@ -65,7 +65,7 @@ export const SelectedWork: React.FC<{ from: number }> = ({ from }) => {
       </AbsoluteFill>
       {/* El título va encima de las tarjetas para que la que pasa al frente no lo tape */}
       <div style={{ position: "absolute", left: 140, top: 96, display: "flex", alignItems: "baseline", gap: 24 }}>
-        <span style={{ fontFamily: FONT, fontWeight: 900, fontSize: 110, letterSpacing: "-0.045em", color: A.paper, translate: `0px ${ip(f, [0, 16], [40, 0], outExpo)}px`, opacity: ip(f, [0, 10], [0, 1]) }}>Selected</span>
+        <span style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 110, letterSpacing: "-0.025em", color: A.paper, translate: `0px ${ip(f, [0, 16], [40, 0], outExpo)}px`, opacity: ip(f, [0, 10], [0, 1]) }}>Selected</span>
         <span style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 600, fontSize: 120, paddingRight: 24, ...gradText, opacity: ip(f, [6, 16], [0, 1]) }}>work.</span>
       </div>
 

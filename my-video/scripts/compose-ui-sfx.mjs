@@ -44,8 +44,14 @@ const put = (i, v, p = 0, rev = 0.15) => {
 const at = (t) => Math.round(t * SR);
 const fr = (frames) => frames / 60;
 
+// v2: ganancia por tipo, medida contra la canción (en v1 clicks, teclas, zip y tics quedaban 15–25 dB por debajo)
+const BOOST = { click: 3.2, tick: 3.6, pop: 1.9, key: 3.4, swoosh: 1.8, ding: 0.4, thunk: 1.2, zip: 9, razor: 1.5, riser: 1.0, impact: 1.0 };
+const EVENTS = [];
+const log = (type, t) => EVENTS.push({ type, t: +t.toFixed(4) });
+
 // ---------- Paleta de sonidos de UI ----------
 function click(t, g = 0.3, f = 3800, p = 0) {
+  g *= BOOST.click; log("click", t);
   const hp = new BQ().set("hp", 2500), i0 = at(t);
   for (let n = 0; n < 0.03 * SR; n++) {
     const x = n / SR;
@@ -53,6 +59,7 @@ function click(t, g = 0.3, f = 3800, p = 0) {
   }
 }
 function tick(t, g = 0.2, f = 2600, p = 0) {
+  g *= BOOST.tick; log("tick", t);
   const i0 = at(t);
   for (let n = 0; n < 0.04 * SR; n++) {
     const x = n / SR;
@@ -60,6 +67,7 @@ function tick(t, g = 0.2, f = 2600, p = 0) {
   }
 }
 function pop(t, g = 0.35, f0 = 950, f1 = 320, p = 0) {
+  g *= BOOST.pop; log("pop", t);
   const i0 = at(t);
   let ph = 0;
   for (let n = 0; n < 0.12 * SR; n++) {
@@ -69,6 +77,7 @@ function pop(t, g = 0.35, f0 = 950, f1 = 320, p = 0) {
   }
 }
 function keyPress(t, g = 0.12, p = 0) {
+  g *= BOOST.key; log("key", t);
   const bp = new BQ().set("bp", 2800 + rnd() * 600, 1.2), i0 = at(t);
   for (let n = 0; n < 0.05 * SR; n++) {
     const x = n / SR;
@@ -78,6 +87,7 @@ function keyPress(t, g = 0.12, p = 0) {
   }
 }
 function swoosh(tc, g = 0.3, len = 0.45, from = -0.8, to = 0.8, fLo = 400, fHi = 6000) {
+  g *= BOOST.swoosh; log("swoosh", tc);
   const bp = new BQ(), i0 = at(tc - len * 0.55);
   for (let n = 0; n < len * SR; n++) {
     const x = n / (len * SR);
@@ -87,6 +97,7 @@ function swoosh(tc, g = 0.3, len = 0.45, from = -0.8, to = 0.8, fLo = 400, fHi =
   }
 }
 function ding(t, g = 0.18, f = 1318.5, p = 0) {
+  g *= BOOST.ding; log("ding", t);
   const i0 = at(t);
   for (let n = 0; n < 0.9 * SR; n++) {
     const x = n / SR;
@@ -95,6 +106,7 @@ function ding(t, g = 0.18, f = 1318.5, p = 0) {
   }
 }
 function thunk(t, g = 0.45) {
+  g *= BOOST.thunk; log("thunk", t);
   const i0 = at(t);
   let ph = 0;
   for (let n = 0; n < 0.2 * SR; n++) {
@@ -102,9 +114,10 @@ function thunk(t, g = 0.45) {
     ph += (TAU * (55 + 90 * exp(-x / 0.02))) / SR;
     put(i0 + n, tanh(sin(ph) * 2) * exp(-x / 0.06) * g, 0, 0.1);
   }
-  click(t, g * 0.6, 2200);
+  click(t, (g * 0.6) / BOOST.click, 2200);
 }
 function zip(t, g = 0.18, p = 0) {
+  g *= BOOST.zip; log("zip", t);
   const i0 = at(t);
   let ph = 0;
   const len = 0.16;
@@ -116,6 +129,7 @@ function zip(t, g = 0.18, p = 0) {
   }
 }
 function razor(t, g = 0.3, p = 0) {
+  g *= BOOST.razor; log("razor", t);
   const hp = new BQ().set("hp", 5000), i0 = at(t);
   for (let n = 0; n < 0.08 * SR; n++) {
     const x = n / SR;
@@ -131,6 +145,7 @@ function riser(t0, t1, g = 0.2) {
   }
 }
 function impact(t, g = 0.5) {
+  g *= BOOST.impact; log("impact", t);
   const i0 = at(t);
   let ph = 0;
   const lp = new BQ().set("lp", 1800, 0.8);
@@ -205,7 +220,7 @@ for (const t of [9.0, 9.5, 10.0, 10.5]) { pop(t, 0.2, 800, 260, 0.1); swoosh(t +
   prev = 0;
   for (let f = 50; f <= 101; f++) {
     const v = Math.round(100 * inExpo((f - 50) / 51));
-    if (Math.floor(v / 4) !== Math.floor(prev / 4)) tick(11 + fr(f), 0.07 + v * 0.0006, 1200 + v * 22, 0);
+    if (Math.floor(v / 4) !== Math.floor(prev / 4)) tick(11 + fr(f), 0.1 + v * 0.0006, 1200 + v * 22, 0);
     prev = v;
   }
   riser(12.2, 13.0, 0.16);
@@ -213,13 +228,17 @@ for (const t of [9.0, 9.5, 10.0, 10.5]) { pop(t, 0.2, 800, 260, 0.1); swoosh(t +
 
 // 13–15 s · Impacto del nombre
 impact(13.0, 0.48);
-for (let i = 0; i < 8; i++) pop(13 + fr(i * 2.5), 0.09, 700 + i * 70, 260, -0.7 + i * 0.2);
+for (let i = 0; i < 8; i++) pop(13 + fr(i * 3), 0.09, 700 + i * 70, 260, -0.7 + i * 0.2);
+// brillo suave cuando el "shimmer" recorre el nombre
+swoosh(13.75, 0.07, 0.9, -0.8, 0.8, 3000, 12000);
 for (let k = 0; k < 6; k++) click(13 + fr(24 + k * 10), 0.12, 3200 + k * 150, -0.5 + k * 0.2);
 
 // 15–17 s · Contacto
-pop(15.0, 0.28, 1100, 300);
-swoosh(15.12, 0.16, 0.35, -0.6, 0.6, 900, 7000);
+pop(15.0, 0.22, 1100, 300);
+for (let i = 0; i < 3; i++) tick(15 + fr(i * 3.6), 0.06, 2000 + i * 250, -0.4 + i * 0.4);
+swoosh(15 + fr(14), 0.14, 0.45, -0.6, 0.6, 900, 7000);
 ding(15.2, 0.12, 1760, 0);
+click(15 + fr(24), 0.16, 1700, 0.2); // botón "Start a project"
 click(16.4, 0.1, 2000);
 
 // ---------- Reverb ligera + salida ----------
@@ -255,4 +274,5 @@ for (let n = 0; n < N; n++) {
   data.writeInt16LE(Math.round(max(-1, min(1, R[n] * g)) * 32767), 46 + n * 4);
 }
 writeFileSync(new URL("../public/ui-sfx.wav", import.meta.url), data);
+writeFileSync(new URL("../public/ui-sfx-events.json", import.meta.url), JSON.stringify(EVENTS));
 console.log("ui-sfx.wav escrito");

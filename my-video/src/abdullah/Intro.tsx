@@ -1,6 +1,6 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { FONT, MONO, backOut, hash, inExpo, ip, outExpo } from "../reel/lib";
-import { A } from "./brand";
+import { MONO, backOut, hash, inExpo, ip, outExpo } from "../reel/lib";
+import { A, SERIF } from "./brand";
 
 const NAME = "ABDULLAH";
 const SUB = "VIDEO EDITOR & POST-PRODUCTION";
@@ -55,14 +55,14 @@ const Content: React.FC<{ f: number }> = ({ f }) => (
     <AbsoluteFill style={{ alignItems: "center", top: 240 }}>
       <div style={{ display: "flex" }}>
         {NAME.split("").map((ch, i) => (
-          <div key={i} style={{ overflow: "hidden", height: 250, lineHeight: "250px" }}>
+          <div key={i} style={{ overflow: "hidden", height: 290, lineHeight: "290px" }}>
             <div
               style={{
-                fontFamily: FONT,
-                fontWeight: 900,
-                fontSize: 250,
+                fontFamily: SERIF,
+                fontWeight: 600,
+                fontSize: 230,
                 color: A.paper,
-                letterSpacing: "-0.04em",
+                letterSpacing: "-0.01em",
                 translate: `0px ${ip(f, [40 + i * 3, 66 + i * 3], [110, 0], outExpo)}%`,
               }}
             >

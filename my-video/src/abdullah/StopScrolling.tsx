@@ -29,14 +29,14 @@ export const StopScrolling: React.FC<{ from: number }> = ({ from }) => {
           ● AVAILABLE FOR NEW PROJECTS
         </div>
         {lines.map((l) => (
-          <div key={l.text} style={{ overflow: "hidden", height: l.size * 1.08 }}>
+          <div key={l.text} style={{ overflow: "hidden", height: l.size * 1.22 }}>
             <div
               style={{
-                fontFamily: FONT,
-                fontWeight: 900,
+                fontFamily: SERIF,
+                fontWeight: 600,
                 fontSize: l.size,
-                lineHeight: 1.08,
-                letterSpacing: "-0.045em",
+                lineHeight: 1.22,
+                letterSpacing: "-0.025em",
                 color: A.ink,
                 translate: `0px ${ip(f, [l.at, l.at + 16], [105, 0], outExpo)}%`,
               }}
@@ -48,11 +48,11 @@ export const StopScrolling: React.FC<{ from: number }> = ({ from }) => {
         {/* "stop" se estampa */}
         <div
           style={{
-            fontFamily: FONT,
-            fontWeight: 900,
-            fontSize: 210,
+            fontFamily: SERIF,
+            fontWeight: 600,
+            fontSize: 220,
             lineHeight: 1,
-            letterSpacing: "-0.05em",
+            letterSpacing: "-0.03em",
             color: A.ink,
             opacity: f >= STOP_AT ? 1 : 0,
             scale: String(ip(f, [STOP_AT, STOP_AT + 10], [1.6, 1], outExpo)),

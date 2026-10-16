@@ -1,12 +1,12 @@
 import { AbsoluteFill, useCurrentFrame } from "remotion";
-import { BEAT, FONT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
+import { BEAT, MONO, backOut, hash, ip, outExpo } from "../reel/lib";
 import { A, SERIF, gradText, kickPulse } from "./brand";
 
 const SERVICES = [
-  { a: "SPORTS & FIGHT", b: "edits", tags: "MMA · BOXING · FOOTBALL", bg: A.night, fg: A.paper },
-  { a: "SHORT-FORM", b: "social", tags: "REELS · TIKTOK · SHORTS", bg: A.violet, fg: A.paper },
-  { a: "SOUND DESIGN", b: "& mix", tags: "SFX · IMPACTS · RISERS", bg: A.night, fg: A.paper },
-  { a: "COLOR &", b: "motion", tags: "GRADING · TITLES · VFX", bg: A.ink, fg: A.paper },
+  { a: "Sports & Fight", b: "edits", tags: "MMA · BOXING · FOOTBALL", bg: A.night, fg: A.paper },
+  { a: "Short-Form", b: "social", tags: "REELS · TIKTOK · SHORTS", bg: A.violet, fg: A.paper },
+  { a: "Sound Design", b: "& mix", tags: "SFX · IMPACTS · RISERS", bg: A.night, fg: A.paper },
+  { a: "Color &", b: "motion", tags: "GRADING · TITLES · VFX", bg: A.ink, fg: A.paper },
 ];
 
 // Visual de cada servicio
@@ -91,8 +91,8 @@ export const Services: React.FC<{ from: number }> = ({ from }) => {
         <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.3em", color: s.fg, opacity: 0.75 }}>
           SERVICE {String(b + 1).padStart(2, "0")} / 04
         </div>
-        <div style={{ overflow: "hidden", height: 150, marginTop: 18 }}>
-          <div style={{ fontFamily: FONT, fontWeight: 900, fontSize: 130, lineHeight: "150px", letterSpacing: "-0.045em", color: s.fg, translate: `0px ${ip(t, [0, 14], [105, 0], outExpo)}%` }}>{s.a}</div>
+        <div style={{ overflow: "hidden", height: 165, marginTop: 18 }}>
+          <div style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 132, lineHeight: "165px", letterSpacing: "-0.025em", color: s.fg, translate: `0px ${ip(t, [0, 14], [105, 0], outExpo)}%` }}>{s.a}</div>
         </div>
         <div style={{ overflow: "hidden", height: 170 }}>
           <div
